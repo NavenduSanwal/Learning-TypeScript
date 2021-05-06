@@ -42,3 +42,22 @@ for (const hobby of person.hobbies) {
   console.log('hobby: ', hobby.toUpperCase());
   // console.log('hobby: ', hobby.map()); // Property 'map' does not exist on type 'string'.
 }
+
+// ENUM
+
+enum Role {
+  ADMIN = 5,
+  AUTHOR,
+  READ_ONLY,
+}
+
+const person1 = {
+  name: 'Peter Parker',
+  age: 20,
+  hobbies: ['crawling', 'slinging'],
+  role: Role.AUTHOR,
+};
+
+if (person1.role === Role.ADMIN) {
+  console.log('is admin');
+}
