@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "watch": "tsc app.ts --watch"
   },
   "author": "Navendu Sanwal",
   "license": "ISC",

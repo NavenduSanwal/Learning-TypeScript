@@ -1,4 +1,5 @@
 // Unknown Type
+console.log('Unknown Type ');
 
 let userInput: unknown;
 let userName: string;
