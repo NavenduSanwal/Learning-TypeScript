@@ -1,15 +1,20 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  const result = n1 + n2;
-  if (showResult) {
-    console.log(phrase + result);
-  } else {
-    return result;
-  }
-}
+// Error since object doesn't specify the type
 
-const number1 = 10;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
+// const person: object = {
+//   name: 'Peter Parker',
+//   age: 20,
+// };
 
-const result = add(number1, number2, printResult, resultPhrase);
+// console.log('person: ', person.name);
+// console.log('person: ', person.nickname); // Property 'name' does not exist on type 'object'.
+
+// Correct
+const person: {
+  name: string;
+  age: number;
+} = {
+  name: 'Peter Parker',
+  age: 20,
+};
+
+console.log('person: ', person.name);
