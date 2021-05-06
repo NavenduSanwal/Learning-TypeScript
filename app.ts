@@ -1,11 +1,12 @@
+// Type Aliases / Custom Types
+
+type NumberOrString = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text';
+
 // Union Types
 
 // should work with numbers and string
-function combine(
-  a: number | string,
-  b: number | string,
-  resultConversion: 'as-number' | 'as-text'
-) {
+function combine(a: NumberOrString, b: NumberOrString, resultConversion: ConversionDescriptor) {
   let result;
 
   if ((typeof a === 'number' && typeof b === 'number') || resultConversion === 'as-number') {
