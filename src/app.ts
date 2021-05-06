@@ -1,6 +1,8 @@
-const button = document.getElementById('clicker')!;
+const button = document.getElementById('clicker'); // strictNullChecks is true, it will need "!"
 
 // button handler
-button.addEventListener('click', () => {
-  console.log('Clicked!!');
-});
+if (button) {
+  button.addEventListener('click', () => {
+    console.log('Clicked!!');
+  });
+}
