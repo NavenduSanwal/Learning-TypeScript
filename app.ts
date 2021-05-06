@@ -32,9 +32,10 @@ person.role.push('superhero'); // Still valid, push is allowed in tuples (except
 // person.role = [0, 'photographer', 'superhero'];
 // person.role[1] = 10; // Invalid, Type 'number' is not assignable to type 'string'.
 
-let favoriteActivities: string[];
+let favoriteActivities: any[];
 // favoriteActivities = 'Sports'; // Type 'string' is not assignable to type 'string[]'.
-favoriteActivities = ['Sports'];
+favoriteActivities = ['Sports', 1];
+// favoriteActivities = 1; // Since[] of any, it still gives error | Type 'number' is not assignable to type 'any[]'.
 
 console.log('person: ', person.name);
 
