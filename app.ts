@@ -8,6 +8,13 @@ function printResult(num: number): void {
   console.log('num: ', num);
 }
 
+function addAndHandle(a: number, b: number, cb: (num: number) => void) {
+  const result = a + b;
+  cb(result);
+}
+
+// ---------
+
 printResult(add(5, 12));
 
 // Functions as Types
@@ -19,3 +26,7 @@ combineValues = add;
 // combineValues = printResult; // Valid, if combineValues type is Function, but will fail logic
 
 console.log(combineValues(10, 10));
+
+addAndHandle(10, 20, (res) => {
+  console.log('cb called with ', res);
+});
