@@ -9,11 +9,28 @@
 // console.log('person: ', person.nickname); // Property 'name' does not exist on type 'object'.
 
 // Correct
-const person = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+} = {
   name: 'Peter Parker',
   age: 20,
   hobbies: ['crawling', 'slinging'],
+  role: [2, 'photographer'],
 };
+
+person.role.push('superhero'); // Valid, but not necessarily logical, type inference is not helpful here
+// person.role[1] = 10; // Valid, but not necessarily logical, type inference is not helpful here
+// TUPLE to the rescue.....
+// role: [number, string];
+
+person.role.push('superhero'); // Still valid, push is allowed in tuples (exception), since tuple length is still enforceable, see below
+// person.role = [];
+// person.role = [0];
+// person.role = [0, 'photographer', 'superhero'];
+// person.role[1] = 10; // Invalid, Type 'number' is not assignable to type 'string'.
 
 let favoriteActivities: string[];
 // favoriteActivities = 'Sports'; // Type 'string' is not assignable to type 'string[]'.
