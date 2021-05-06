@@ -1,4 +1,8 @@
 {
+  "exclude": [
+    "basics/*",
+    "node_modules"
+  ] /* node_modules will be excluded by default, but if overwritten it must be added */,
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
