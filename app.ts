@@ -1,32 +1,21 @@
-function add(a: number, b: number) {
-  // Return type is inferred as number
-  return a + b;
+// Unknown Type
+
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Peter'; // works if type is unknown
+
+// userName = userInput; // Fails if type is unknown, pass if type is any
+
+if (typeof userInput === 'string') userName = userInput; // with unknown type, TS requires extra explicit type checks in code
+
+// Never Type
+// if some error is thrown or on infinite loop
+
+function generateError(message: string, code: number): never {
+  // on hover, inferred type is void, a bug
+  throw { message: message, errorCode: code };
 }
 
-function printResult(num: number): void {
-  // similarly, void is also inferred
-  console.log('num: ', num);
-}
-
-function addAndHandle(a: number, b: number, cb: (num: number) => void) {
-  const result = a + b;
-  cb(result);
-}
-
-// ---------
-
-printResult(add(5, 12));
-
-// Functions as Types
-
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = 5; // Valid, if combineValues type is any, so TS will pass it, but it will fail in runtime since combineValues is no longer a function
-// combineValues = printResult; // Valid, if combineValues type is Function, but will fail logic
-
-console.log(combineValues(10, 10));
-
-addAndHandle(10, 20, (res) => {
-  console.log('cb called with ', res);
-});
+generateError('Not Found', 404);
