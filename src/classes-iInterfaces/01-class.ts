@@ -36,3 +36,44 @@ accounting.printEmployeeInfo();
 
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 // accountingCopy.describe();
+
+// Inheritance
+
+// can't extend from multiple class
+// if constructor is not defined, it picks up base class constructor
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, 'IT');
+    this.admins = admins;
+  }
+}
+
+const it = new ITDepartment('D202', ['Jane']);
+console.log('it: ', it);
+it.describe();
+
+it.addEmployee('Jane');
+it.addEmployee('Sam');
+
+it.printEmployeeInfo();
+
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const accounting2 = new AccountingDepartment('D102', []);
+console.log('accounting: ', accounting2);
+
+accounting2.addReport('Some error ....');
+accounting2.printReports();
