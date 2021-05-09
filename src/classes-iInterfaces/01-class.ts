@@ -1,9 +1,9 @@
 class Department {
-  // private id: string;
+  // private readonly id: string;
   // private name: string;
   private employees: string[] = [];
 
-  constructor(private id: string, public name: string) {
+  constructor(private readonly id: string, public name: string) {
     // public is necessary here ^^^^^, the properties are created and initialized
     // this.id = id;
     // this.name = n;
@@ -14,6 +14,7 @@ class Department {
   }
 
   addEmployee(employee: string) {
+    // this.id = 'D102'; // cannot change readonly property
     this.employees.push(employee);
   }
 
