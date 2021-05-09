@@ -1,7 +1,7 @@
 class Department {
   // private readonly id: string;
   // private name: string;
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // public is necessary here ^^^^^, the properties are created and initialized
@@ -63,6 +63,15 @@ class AccountingDepartment extends Department {
     super(id, 'Accounting');
   }
 
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      console.log('Cannot add Max');
+      return;
+    }
+
+    this.employees.push(name);
+  }
+
   addReport(text: string) {
     this.reports.push(text);
   }
@@ -77,3 +86,7 @@ console.log('accounting: ', accounting2);
 
 accounting2.addReport('Some error ....');
 accounting2.printReports();
+
+accounting2.addEmployee('Max');
+accounting2.addEmployee('Ad');
+accounting2.printEmployeeInfo();
