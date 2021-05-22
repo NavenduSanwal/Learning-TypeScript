@@ -1,7 +1,7 @@
 {
   "name": "understanding-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Learn TS along with Academind",
   "main": "app.js",
   "scripts": {
     "start": "lite-server",

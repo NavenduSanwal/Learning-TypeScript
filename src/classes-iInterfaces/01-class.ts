@@ -59,8 +59,28 @@ it.addEmployee('Sam');
 it.printEmployeeInfo();
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      console.log('From getter: ');
+      return this.lastReport;
+    }
+
+    throw new Error('No report found.');
+  }
+
+  // generally with same as getter
+  set mostRecentReport(value: string) {
+    if (!value) throw new Error('Enter valid value.');
+
+    // it could be alias for addReport method
+    this.addReport(value);
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
+    this.lastReport = reports[0];
   }
 
   addEmployee(name: string) {
@@ -74,9 +94,12 @@ class AccountingDepartment extends Department {
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
+    console.log('printing Reports: ');
+
     console.log(this.reports);
   }
 }
@@ -84,7 +107,18 @@ class AccountingDepartment extends Department {
 const accounting2 = new AccountingDepartment('D102', []);
 console.log('accounting: ', accounting2);
 
+// getter and setter are used as properties; not as functions, called with ()
+// console.log(accounting2.mostRecentReport); // will throw error as defined iin the getter
+
 accounting2.addReport('Some error ....');
+accounting2.addReport('Latest error ....');
+console.log(accounting2.mostRecentReport);
+
+// set value with setter, empty value will throw error as defined in setter
+// accounting2.mostRecentReport = '';
+accounting2.mostRecentReport = 'Year End Report';
+console.log(accounting2.mostRecentReport);
+
 accounting2.printReports();
 
 accounting2.addEmployee('Max');
