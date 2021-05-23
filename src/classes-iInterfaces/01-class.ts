@@ -2,11 +2,16 @@ class Department {
   // private readonly id: string;
   // private name: string;
   protected employees: string[] = [];
+  static fiscalYear = 2021;
 
   constructor(private readonly id: string, public name: string) {
     // public is necessary here ^^^^^, the properties are created and initialized
     // this.id = id;
     // this.name = n;
+    // console.log(this.fiscalYear); // static properties will not work here
+  }
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -124,3 +129,6 @@ accounting2.printReports();
 accounting2.addEmployee('Max');
 accounting2.addEmployee('Ad');
 accounting2.printEmployeeInfo();
+
+const emp1 = Department.createEmployee('josh');
+console.log('emp1: ', emp1, Department.fiscalYear);
