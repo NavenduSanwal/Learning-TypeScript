@@ -1,10 +1,10 @@
-class Department {
+abstract class Department {
   // private readonly id: string;
   // private name: string;
   protected employees: string[] = [];
   static fiscalYear = 2021;
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // public is necessary here ^^^^^, the properties are created and initialized
     // this.id = id;
     // this.name = n;
@@ -14,9 +14,16 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  abstract describe(this: Department): void;
+  // make a method abstract in base class if we want to enforce each child class to must have method with same name
+  // abstract method can only be inside abstract class
+  // abstract method can't have implementation
+  // abstract method must specify its return type
+
+  // will have to remove braces, implementation and add return type
+  // {
+  //    console.log(`Department (${this.id}): ${this.name}`);
+  // }
 
   addEmployee(employee: string) {
     // this.id = 'D102'; // cannot change readonly property
@@ -28,16 +35,17 @@ class Department {
   }
 }
 
-const accounting = new Department('D101', 'Accounting');
-console.log('accounting: ', accounting);
-accounting.describe();
+// Abstract class can't be instantiated
+// const accounting = new Department('D101', 'Accounting');
+// console.log('accounting: ', accounting);
+// accounting.describe();
 
-accounting.addEmployee('John');
-accounting.addEmployee('Max');
+// accounting.addEmployee('John');
+// accounting.addEmployee('Max');
 
-// accounting.employees[2] = 'Peter'; // private property
+// // accounting.employees[2] = 'Peter'; // private property
 
-accounting.printEmployeeInfo();
+// accounting.printEmployeeInfo();
 
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 // accountingCopy.describe();
@@ -51,6 +59,10 @@ class ITDepartment extends Department {
   constructor(id: string, admins: string[]) {
     super(id, 'IT');
     this.admins = admins;
+  }
+
+  describe() {
+    console.log('IT Department - ID: ' + this.id);
   }
 }
 
@@ -86,6 +98,12 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log('==========');
+    console.log('Accounting Department - ID: ' + this.id);
+    console.log('==========');
   }
 
   addEmployee(name: string) {
@@ -129,6 +147,7 @@ accounting2.printReports();
 accounting2.addEmployee('Max');
 accounting2.addEmployee('Ad');
 accounting2.printEmployeeInfo();
+accounting2.describe();
 
 const emp1 = Department.createEmployee('josh');
 console.log('emp1: ', emp1, Department.fiscalYear);
