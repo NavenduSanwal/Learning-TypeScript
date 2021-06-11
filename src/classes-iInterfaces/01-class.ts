@@ -56,9 +56,21 @@ abstract class Department {
 // if constructor is not defined, it picks up base class constructor
 class ITDepartment extends Department {
   admins: string[];
-  constructor(id: string, admins: string[]) {
+  private static instance: ITDepartment;
+
+  private constructor(id: string, admins: string[]) {
     super(id, 'IT');
     this.admins = admins;
+  }
+
+  static getInstance() {
+    // this inside static method refers to class only
+    if (ITDepartment.instance) {
+      return this.instance;
+    }
+
+    this.instance = new ITDepartment('D202', ['Jane']);
+    return this.instance;
   }
 
   describe() {
@@ -66,8 +78,12 @@ class ITDepartment extends Department {
   }
 }
 
-const it = new ITDepartment('D202', ['Jane']);
-console.log('it: ', it);
+// const it = new ITDepartment('D202', ['Jane']);
+// instantiaed with singleton class
+const it = ITDepartment.getInstance();
+const it2 = ITDepartment.getInstance();
+
+console.log('it: ', it, it === it2);
 it.describe();
 
 it.addEmployee('Jane');
