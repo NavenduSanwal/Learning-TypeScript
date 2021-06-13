@@ -1,5 +1,5 @@
 interface Greetable {
-  name: string;
+  readonly name: string;
   greet(phrase: string): void;
 }
 
@@ -8,7 +8,7 @@ interface Greetable {
 // It's a bit like working with abstract class system for the difference being that an interface has no
 // implementation details at all, whereas abstract classes can be a mixture of you have to overwrite this parts and I have a concrete implementation parts.
 class Person implements Greetable {
-  name: string;
+  name: string; // private, public are not allowed in interface
   age = 30;
 
   constructor(n: string) {
@@ -24,5 +24,6 @@ class Person implements Greetable {
 let user1: Greetable; // Greetable also works since Person implements Greetable, therefore it will to comply with the interface
 
 user1 = new Person('John');
+// user1.name = 'Jane'; // gives ts error
 
 user1.greet('Hi there, I am');
