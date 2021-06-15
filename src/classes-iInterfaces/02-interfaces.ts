@@ -30,3 +30,17 @@ user1 = new Person('John');
 // user1.name = 'Jane'; // gives ts error
 
 user1.greet('Hi there, I am');
+
+// Interface as function
+
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  // could be anonymous
+  // COlon required instead of arrow
+  (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+// can it have less than 2 params? not giving error??
+add = (n1: number, n2: number) => n1 + n2;
