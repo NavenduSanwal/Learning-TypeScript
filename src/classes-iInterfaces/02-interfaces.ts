@@ -1,5 +1,6 @@
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string;
 }
 
 interface Greetable extends Named {
@@ -11,15 +12,21 @@ interface Greetable extends Named {
 // It's a bit like working with abstract class system for the difference being that an interface has no
 // implementation details at all, whereas abstract classes can be a mixture of you have to overwrite this parts and I have a concrete implementation parts.
 class Person implements Greetable {
-  name: string; // private, public are not allowed in interface
+  name?: string; // private, public are not allowed in interface
   age = 30;
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
   }
 
-  greet(phrase: string) {
-    console.log(phrase + ' ' + this.name);
+  greet(phrase?: string) {
+    if (this.name) {
+      console.log(phrase + ' ' + this.name);
+    } else {
+      console.log('Hi!');
+    }
   }
 }
 
@@ -30,6 +37,9 @@ user1 = new Person('John');
 // user1.name = 'Jane'; // gives ts error
 
 user1.greet('Hi there, I am');
+
+let user2 = new Person();
+user2.greet();
 
 // Interface as function
 
