@@ -1,3 +1,5 @@
+//  Interfaces describe objects (or function types) but can't store/ describe arbitrary types like union types.
+//  example ??
 interface Named {
   readonly name?: string;
   outputName?: string;
