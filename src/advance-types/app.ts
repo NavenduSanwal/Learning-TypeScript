@@ -1,14 +1,15 @@
-type Admin = {
+interface Admin {
   name: string;
   privileges: string[];
-};
+}
 
-type Employee = {
+interface Employee {
   name: string;
   startDate: Date;
-};
+}
 
-type ElevatedEmployee = Admin & Employee;
+// type ElevatedEmployee = Admin & Employee;
+interface ElevatedEmployee extends Employee, Admin {}
 
 const manager: ElevatedEmployee = {
   name: 'Max',
