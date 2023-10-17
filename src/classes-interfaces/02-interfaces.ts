@@ -48,7 +48,7 @@ user2.greet();
 // type AddFn = (a: number, b: number) => number;
 interface AddFn {
   // could be anonymous
-  // COlon required instead of arrow
+  // Colon required instead of arrow
   (a: number, b: number): number;
 }
 

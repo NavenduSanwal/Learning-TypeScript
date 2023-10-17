@@ -16,6 +16,7 @@ if (typeof userInput === 'string') userName = userInput; // with unknown type, T
 
 function generateError(message: string, code: number): never {
   // on hover, inferred type is void, a bug
+  // should specify as never explicitly
   throw { message: message, errorCode: code };
 }
 

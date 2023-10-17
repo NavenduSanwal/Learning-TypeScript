@@ -8,6 +8,16 @@ function printResult2(num: number): void {
   console.log('num: ', num);
 }
 
+// not much use case for explicit undefined type
+// let someValue: undefined
+
+function printResult3(num: number): undefined {
+  // return type undefined !== void,
+  // only set when explicitally returning undefined
+  console.log('num: ', num);
+  return;
+}
+
 function addAndHandle(a: number, b: number, cb: (num: number) => void) {
   const result = a + b;
   cb(result);
@@ -19,6 +29,7 @@ printResult2(add2(5, 12));
 
 // Functions as Types
 
+// let combineValues: Function;
 let combineValues: (a: number, b: number) => number;
 
 combineValues = add2;
